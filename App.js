@@ -4,20 +4,33 @@ class App extends React.Component {
 
     constructor() {
         super();
-        this.state = {red: ''};
+        this.state = {
+            red: 0,
+            green: 0,
+            blue: 0
+        };
         this.update = this.update.bind(this)
     }
 
     update(e) {
-        this.setState({kek: e.target.value})
+        this.setState({
+            red: ReactDom.findDOMNode(this.refs.red.refs.input).value,
+            green: ReactDom.findDOMNode(this.refs.green.refs.input).value,
+            blue: ReactDom.findDOMNode(this.refs.blue.refs.input).value,
+        })
     }
 
     render() {
         return (
             <div>
-                <h1>{this.state.kek}</h1>
-                <hr/>
-                <Slider update={this.update}/>
+                <Slider ref="red" update={this.update}/>
+                {this.state.red}
+                <br/>
+                <Slider ref="green" update={this.update}/>
+                {this.state.green}
+                <br/>
+                <Slider ref="blue" update={this.update}/>
+                {this.state.blue}
             </div>
         );
     }
@@ -37,9 +50,10 @@ const Widget = (props) => {
 class Slider extends React.Component {
     render() {
         return (
-            <input type="range"
+            <input ref="input" type="range"
                    min="0"
                    max="255"
+                   start="0"
                    onChange={this.props.update}/>
         );
 
