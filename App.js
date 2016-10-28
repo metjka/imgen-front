@@ -24,17 +24,34 @@ class App extends React.Component {
         return (
             <div>
                 <Slider ref="red" update={this.update}/>
+                <br/>
                 {this.state.red}
                 <br/>
                 <Slider ref="green" update={this.update}/>
+                <br/>
                 {this.state.green}
                 <br/>
                 <Slider ref="blue" update={this.update}/>
+                <br/>
                 {this.state.blue}
+                <br/>
+                
+
+                <Button>I <Heart/> Ok</Button>
             </div>
         );
     }
 }
+
+class Button extends React.Component {
+    render() {
+        return (
+            <button>{this.props.children}</button>
+        );
+
+    }
+}
+
 
 const Widget = (props) => {
     return (
@@ -59,5 +76,7 @@ class Slider extends React.Component {
 
     }
 }
+
+const Heart = ()=> <span className="glyphicon glyphicon-thumbs-up"> </span>;
 
 export default App
