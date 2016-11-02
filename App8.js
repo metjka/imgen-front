@@ -4,12 +4,11 @@ class App8 extends React.Component {
 
     constructor() {
         super();
-        this.state = {val: 0};
         this.update = this.update.bind(this);
     }
 
     update() {
-        this.setState({val: this.state.val + 1})
+        this.props.val = this.props.val+1;
     }
 
     componentWillMount() {
@@ -18,16 +17,16 @@ class App8 extends React.Component {
 
     render() {
         console.log('Rendering!');
-        return <button onClick={this.update}>{this.state.val}</button>
+        return <button onClick={this.update}>{this.props.val1}</button>
 
     }
 
     componentDidMount() {
-        console.log('mounted');
+         this.inc = setInterval(this.update, 1000);
     }
 
     componentWillUnmount() {
-        console.log('by!');
+         clearInterval(this.inc)
     }
 }
 
@@ -55,5 +54,7 @@ class Wrapper extends React.Component {
         );
     }
 }
+
+Wrapper.defaultProps = {val: 0};
 
 export  default Wrapper;
