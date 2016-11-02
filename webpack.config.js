@@ -14,21 +14,29 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     module: {
-        loaders: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'react-hot',
-            query: {
-                presets: ['es2015', 'react']
+        loaders: [
+            {test: /\.json$/, loader: 'json-loader'},
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'react-hot'
+            }, {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015', 'react']
+                }
             }
-        }, {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                presets: ['es2015', 'react']
-            }
-        }
         ]
+    },
+    resolve: {
+        extensions: ['', '.webpack.js', '.web.js', '.js']
+    },
+    node: {
+        console: true,
+        net: "empty",
+        tls: "empty",
+        fs: "empty"
     }
 };

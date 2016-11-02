@@ -1,6 +1,5 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
+import React from "react";
+import Request from "request";
 
 class LoginScreen extends React.Component {
 
@@ -29,7 +28,24 @@ class LoginScreen extends React.Component {
         var username = this.state.username;
         var password = this.state.password;
 
-        this.forceUpdate();
+        var options = {
+            url: 'http://localhost:1112/v1/user/auth',
+            json: true,
+            method: 'POST',
+            body: {
+                'username': 'Loli',
+                'password': 'Loli'
+            }
+        };
+
+        function callback(error, response, body) {
+            // console.log(response.statusCode);
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+            }
+        }
+
+        Request(options, callback);
     }
 
     render() {
@@ -40,9 +56,11 @@ class LoginScreen extends React.Component {
                 <button type="submit" onClick={this.login}>Submit</button>
                 <br/>
                 <h4>Random number: {Math.random()}</h4>
-            </div>);
+            </div>
+        );
     }
 
 }
+
 
 export default LoginScreen
