@@ -1,5 +1,7 @@
 import React from "react";
 import Request from "request";
+import styles from './login.css'
+import {Link, hashHistory} from 'react-router'
 
 class LoginScreen extends React.Component {
 
@@ -16,12 +18,12 @@ class LoginScreen extends React.Component {
 
     usernameUpdate(e) {
         this.setState({username: e.target.value});
-        console.log("username: " + this.state.username)
+        // console.log("username: " + this.state.username)
     }
 
     passwordUpdate(e) {
         this.setState({password: e.target.value});
-        console.log("password: " + this.state.password)
+        // console.log("password: " + this.state.password)
     }
 
     login(e) {
@@ -32,9 +34,10 @@ class LoginScreen extends React.Component {
             url: 'http://localhost:1112/v1/user/auth',
             json: true,
             method: 'POST',
+            header: {'Origin': window.location.origin},
             body: {
-                'username': 'Loli',
-                'password': 'Loli'
+                'username': this.state.username,
+                'password': this.state.password
             }
         };
 
@@ -42,6 +45,8 @@ class LoginScreen extends React.Component {
             // console.log(response.statusCode);
             if (!error && response.statusCode == 200) {
                 console.log(body);
+                localStorage.setItem('user', JSON.stringify(body));
+                hashHistory.push('/user');
             }
         }
 
@@ -50,12 +55,15 @@ class LoginScreen extends React.Component {
 
     render() {
         return (
-            <div >
-                <input type="text" placeholder="username" onChange={this.usernameUpdate}/>
-                <input type="password" placeholder="password" onChange={this.passwordUpdate}/>
-                <button type="submit" onClick={this.login}>Submit</button>
-                <br/>
-                <h4>Random number: {Math.random()}</h4>
+            <div className="login-page">
+                <div className="form">
+                    <form className="login-form">
+                        <input type="text" placeholder="username" onChange={this.usernameUpdate}/>
+                        <input type="password" placeholder="password" onChange={this.passwordUpdate}/>
+                        <button type="button" onClick={this.login}>Submit</button>
+                        <p className="message">Not registered? <Link to="/s">Create an account</Link></p>
+                    </form>
+                </div>
             </div>
         );
     }

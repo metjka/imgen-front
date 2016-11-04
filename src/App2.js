@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-class App extends React.Component {
+class App2 extends React.Component {
 
     constructor() {
         super();
@@ -96,4 +96,4 @@ NumberInput.defaultProps = {
 
 const Heart = ()=> <span className="glyphicon glyphicon-thumbs-up"> </span>;
 
-export default App
+export default App2

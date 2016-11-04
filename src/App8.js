@@ -57,4 +57,4 @@ class Wrapper extends React.Component {
 
 Wrapper.defaultProps = {val: 0};
 
-export  default Wrapper;
+export  default App8;
