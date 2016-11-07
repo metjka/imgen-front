@@ -3,18 +3,29 @@ import Request from "request";
 import styles from './login.css'
 import {Link, hashHistory} from 'react-router'
 
+// /user
 class LoginScreen extends React.Component {
 
     constructor() {
         super();
+
         this.state = {
             username: '',
             password: ''
         };
+
         this.login = this.login.bind(this);
         this.usernameUpdate = this.usernameUpdate.bind(this);
+
         this.passwordUpdate = this.passwordUpdate.bind(this);
     }
+
+    componentWillMount() {
+        if (JSON.parse(localStorage.getItem('user'))) {
+            hashHistory.push('/user')
+        }
+    }
+
 
     usernameUpdate(e) {
         this.setState({username: e.target.value});
@@ -61,7 +72,7 @@ class LoginScreen extends React.Component {
                         <input type="text" placeholder="username" onChange={this.usernameUpdate}/>
                         <input type="password" placeholder="password" onChange={this.passwordUpdate}/>
                         <button type="button" onClick={this.login}>Submit</button>
-                        <p className="message">Not registered? <Link to="/s">Create an account</Link></p>
+                        {/*<p className="message">Not registered? <Link to="/s">Create an account</Link></p>*/}
                     </form>
                 </div>
             </div>
