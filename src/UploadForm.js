@@ -1,9 +1,14 @@
+import Request from "request";
 import React from "react";
+// import Constants from './const.json'
+
 class UploadForm extends React.Component {
+
 
     constructor() {
         super();
         this.state = {
+            user: JSON.parse(localStorage.user),
             file: '',
             imagePreviewUrl: ''
         }
@@ -12,7 +17,12 @@ class UploadForm extends React.Component {
     _handleSubmit(e) {
         e.preventDefault();
         // TODO: do something with -> this.state.file
+        let fileReader = new FileReader();
+
         let fileToUpload = this.state.file;
+        fileToUpload.readAsDataURL(fileToUpload);
+        console.log(fileToUpload.readAsDataURL(fileToUpload));
+
         console.log('handle uploading-', this.state.file);
     }
 

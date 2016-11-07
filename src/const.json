@@ -1,3 +1,4 @@
 {
-  "imagestoreurl": "http://localhost:1113/v1/image/avatar?username="
+  "imagestoreurl": "http://localhost:1113/v1/image/avatar?username=",
+  "imagestore":"http://localhost:1113"
 }
