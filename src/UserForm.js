@@ -13,8 +13,8 @@ class UserGalleryForm extends React.Component {
     render() {
         return (
             <div>
-                <NavBar/>
-                <UserForm name={this.state.user['username']}/>
+                <NavBar username={this.state.user['username']}/>
+                {/*<UserForm name={this.state.user['username']}/>*/}
             </div>
         )
     }

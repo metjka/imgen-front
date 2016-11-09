@@ -126,7 +126,7 @@ li {
     float: left;
 }
 
-li a {
+li a.link, text {
     display: block;
     color: white;
     text-align: center;
@@ -134,7 +134,12 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
-    background-color: #4CAF50;
 
+li a.link:hover {
+    background-color: #4CAF50;
+}
+img {
+    margin-top: 7px;
+    margin-right: 5px;
+    border: dotted coral 3px;
 }

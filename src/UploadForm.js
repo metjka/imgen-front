@@ -70,7 +70,7 @@ class UploadForm extends React.Component {
 
         return (
             <div className="previewComponent">
-                <NavBar/>
+                <NavBar username={this.state.user['username']}/>
                 <form onSubmit={(e)=>this._handleSubmit(e)}>
                     <input className="fileInput" type="file" onChange={this.handleImageChange}/>
                     <button className="submitButton" type="submit" onClick={this.handleSubmit}>Upload Image
