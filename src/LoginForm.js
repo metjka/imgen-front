@@ -1,7 +1,7 @@
 import React from "react";
 import Request from "request";
 import styles from './login.css'
-import {Link, hashHistory} from 'react-router'
+import {Link, browserHistory} from 'react-router'
 
 // /user
 class LoginScreen extends React.Component {
@@ -16,13 +16,12 @@ class LoginScreen extends React.Component {
 
         this.login = this.login.bind(this);
         this.usernameUpdate = this.usernameUpdate.bind(this);
-
         this.passwordUpdate = this.passwordUpdate.bind(this);
     }
 
     componentWillMount() {
         if (JSON.parse(localStorage.getItem('user'))) {
-            hashHistory.push('/user')
+            browserHistory.push('/user')
         }
     }
 
@@ -57,7 +56,7 @@ class LoginScreen extends React.Component {
             if (!error && response.statusCode == 200) {
                 console.log(body);
                 localStorage.setItem('user', JSON.stringify(body));
-                hashHistory.push('/user');
+                browserHistory.push('/user');
             }
         }
 

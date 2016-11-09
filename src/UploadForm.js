@@ -1,6 +1,9 @@
 import Request from "request";
 import React from "react";
-// import Constants from './const.json'
+import {hashHistory} from "react-router";
+
+import NavBar from "./NavBar"
+import C from "./C"
 
 class UploadForm extends React.Component {
 
@@ -10,23 +13,36 @@ class UploadForm extends React.Component {
         this.state = {
             user: JSON.parse(localStorage.user),
             file: '',
-            imagePreviewUrl: ''
+            imagePreviewUrl: '',
+            base65Image: ''
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleImageChange = this.handleImageChange.bind(this);
     }
 
-    _handleSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
-        // TODO: do something with -> this.state.file
-        let fileReader = new FileReader();
+        let options = {
+            url: C.IMAGE_STORE_DEV + '/v1/image/' + this.state.user['username'],
+            type: 'text/plain',
+            body: this.state.base65Image,
+            headers: {'Origin': window.location.origin}
+        };
 
-        let fileToUpload = this.state.file;
-        fileToUpload.readAsDataURL(fileToUpload);
-        console.log(fileToUpload.readAsDataURL(fileToUpload));
+        function cb(error, response, body) {
+            console.log(response.statusCode);
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+                localStorage.setItem('user', JSON.stringify(body));
+                hashHistory.push('/user');
+            }
+        }
 
-        console.log('handle uploading-', this.state.file);
+        Request.post(options, cb)
     }
 
-    _handleImageChange(e) {
+    handleImageChange(e) {
         e.preventDefault();
 
         let reader = new FileReader();
@@ -35,7 +51,8 @@ class UploadForm extends React.Component {
         reader.onloadend = () => {
             this.setState({
                 file: file,
-                imagePreviewUrl: reader.result
+                imagePreviewUrl: reader.result,
+                base65Image: reader.result.split(',')[1]
             });
         };
         reader.readAsDataURL(file)
@@ -53,9 +70,10 @@ class UploadForm extends React.Component {
 
         return (
             <div className="previewComponent">
+                <NavBar/>
                 <form onSubmit={(e)=>this._handleSubmit(e)}>
-                    <input className="fileInput" type="file" onChange={(e)=>this._handleImageChange(e)}/>
-                    <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Upload Image
+                    <input className="fileInput" type="file" onChange={this.handleImageChange}/>
+                    <button className="submitButton" type="submit" onClick={this.handleSubmit}>Upload Image
                     </button>
                 </form>
                 <div className="imgPreview">

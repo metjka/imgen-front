@@ -8,7 +8,8 @@ module.exports = {
     },
     devServer: {
         inline: true,
-        port: 3334
+        port: 3334,
+        historyApiFallback : true
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
