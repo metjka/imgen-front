@@ -45,7 +45,7 @@ class Gallery extends Component {
         );
     }
 }
-;
+
 
 Gallery.displayName = 'Gallery';
 Gallery.propTypes = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Request from 'request';
 
 import NavBar from "./NavBar";
 import * as C from './C';
@@ -32,33 +33,81 @@ class UserGalleryForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: JSON.parse(localStorage.user)
+            user: JSON.parse(localStorage.user),
+            images: []
         };
+        this.getImages = this.getImages.bind(this)
     }
 
-    lol() {
-        console.log("lol")
+    getImages() {
+        // let options = {
+        //     url: C.IMAGE_STORE_DEV + '/v1/image/?username'+this.state.user['username'],
+        //     headers: {'Origin': window.location.origin}
+        // };
+        //
+        // function cb(error, response, body) {
+        //     console.log(response.statusCode);
+        //     if (!error && response.statusCode == 200) {
+        //         console.log(body);
+        //         this.setState = {
+        //
+        //         }
+        //     }
+        // }
+        //
+        // Request.get(options,cb)
     }
 
     render() {
         return (
-            <div>
+            <div onLoad={this.getImages}>
                 <NavBar username={this.state.user['username']}/>
                 <Gallery images={[
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'},
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'},
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'},
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'},
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'},
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'},
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'},
-                    {src: 'http://localhost:1113/v1/image/ihor_1478694773198',thumbnail:'http://localhost:1113/v1/image/ihor_1478694773198' ,showThumbnails:'true'}
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    },
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    },
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    },
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    },
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    },
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    },
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    },
+                    {
+                        src: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        thumbnail: 'http://localhost:1113/v1/image/ihor_1478694773198',
+                        showThumbnails: 'true'
+                    }
                 ]}/>
             </div>
         )
     }
 }
-
 
 
 export default UserGalleryForm
