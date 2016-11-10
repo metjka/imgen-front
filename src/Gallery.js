@@ -18,7 +18,7 @@ class Gallery extends Component {
 
         const gallery = images.map((img, i) => {
             return (
-                <a
+                <a key={img.src}
                     href={img.src}
                     className={css(classes.thumbnail, classes[img.orientation])}
                 >
