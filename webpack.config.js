@@ -20,7 +20,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'react-hot'
+                loader: 'react-hot-loader/webpack'
             },
             {
                 test: /\.js$/,
